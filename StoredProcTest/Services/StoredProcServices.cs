@@ -16,7 +16,7 @@ namespace StoredProcTest.Services
     {
     
         //Make method ressilient
-        public async static Task<(List<FirstTable> firstTable, List<SecondTable> secondTable)> FindStudentsFromSql(ApplicationContext context,string sql)
+        public async static Task<ResultClass> FindStudentsFromSql(ApplicationContext context,string sql)
         {
             try
             {
@@ -57,7 +57,9 @@ namespace StoredProcTest.Services
                 //context.AttachRange(secondTables);
                 await reader.CloseAsync();
 
-                return (firstTables, secondTables);
+                var result = new ResultClass { FirstTableItems = firstTables, SecondTableItems = secondTables };
+
+                return result;
 
             }
             catch (Exception ex)

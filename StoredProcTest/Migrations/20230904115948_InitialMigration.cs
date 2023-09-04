@@ -51,7 +51,8 @@ namespace StoredProcTest.Migrations
 
             migrationBuilder.Sql(@"CREATE PROCEDURE MyCustomProcedure
                                AS
-                               SELECT * FROM Student; Select * from Classes");
+                               SELECT [Name] FROM Student;
+							   Select [ClassName],B.[Name] from Classes A join Student B on A.ClassId = B.ClassId;");
         }
 
         /// <inheritdoc />
